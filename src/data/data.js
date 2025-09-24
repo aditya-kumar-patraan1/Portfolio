@@ -36,7 +36,7 @@ export const portfolioData = {
     description:
       "Built a robust data pipeline with automated weekly updates to analyze Amazon laptop prices, featuring an interactive dashboard with advanced filters and highlights for seamless price comparisons and brand insights.",
     tech: ["React", "MongoDB", "Sockets","Gemini Api", "Node.js","WebRTC"],
-    image: "https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "./codedoodle.png",
     github: "https://github.com/aditya-kumar-patraan1/Code-Doodle-Editor",
     live: "https://code-doodle-editor.vercel.app/",
     category: "Full Stack",
@@ -49,7 +49,7 @@ export const portfolioData = {
     description:
       "Developed a responsive AI assistant platform featuring an intuitive and conversational interface. Offers intelligent responses using Gemini API while ensuring seamless UX across devices.",
     tech: ["React", "Javascript", "Tailwind CSS"],
-    image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=600&h=400&fit=crop",
+    image: "./elvatree.png",
     github: "https://github.com/aditya-kumar-patraan1/ElvaTree-Task",
     live: "https://evaltree-dashboard.vercel.app/",
     category: "Full Stack",
@@ -62,7 +62,7 @@ export const portfolioData = {
     description:
       "Designed an ML model to predict student performance based on input factors. Deployed with Streamlit for user-friendly interaction and visualization.",
     tech: ["Python", "scikit-learn", "Streamlit", "pandas"],
-    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&h=400&fit=crop",
+    image: "/intellicare.png",
     github: "https://github.com/aditya-kumar-patraan1/Dr_IntelliCare",
     live: "https://intelli-care.vercel.app/",
     category: "Full Stack",
@@ -75,7 +75,7 @@ export const portfolioData = {
     description:
       "A self-growth dashboard to monitor personal progress in areas like skills, health, finances, and mood. Offers time tracking, AI-based suggestions, and dynamic visualizations.",
     tech: ["React", "Tailwind CSS", "Gemini API"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+    image: "/codereviewer.png",
     github: "https://github.com/aditya-kumar-patraan1/CodeReviewer",
     live: "https://codedoodle.onrender.com/",
     category: "Full Stack",
