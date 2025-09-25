@@ -117,7 +117,7 @@ export const portfolioData = {
 
  education : {
   degree: "Bachelor of Computer Applications",
-  institution: "MSI Janakpuri",
+  institution: "Maharaja Surajmal Institute, GGSIPU",
   year: "2023 - 2026",
   status: "3rd Year (Currently Pursuing)",
   gpa: "9.873/10",
