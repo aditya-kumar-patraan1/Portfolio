@@ -438,7 +438,7 @@ const LeetCode = () => {
                     {stat.difficulty}
                   </h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {stat.solved} / {totalSubmissions} solved
+                    {stat.solved} solved
                   </p>
                 </motion.div>
               );
