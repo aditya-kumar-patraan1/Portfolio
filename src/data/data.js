@@ -2,7 +2,7 @@
 export const portfolioData = {
   personal: {
     name: "Aditya Kumar",
-    title: "Full Stack Developer & DSA Enthusiastic",
+    title: "Full Stack Developer & DSA Enthusiast",
     tagline: "Transforming logic into clarity and code into creativity.",
     email: "adityakrp2006@gmail.com",
     phone: "+91 7982489836",
