@@ -5,10 +5,10 @@ import ClientLayout from './client-layout'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Vikas - Portfolio',
-  description: 'AI/ML Engineer and Full Stack Developer Portfolio',
-  keywords: 'portfolio, AI, ML, full stack developer, React, Next.js',
-  authors: [{ name: 'Vikas' }],
+  title: 'Aditya - Portfolio',
+  description: 'DSA Enthusiatic and Full Stack Developer Portfolio',
+  keywords: ' portfolio, Socket.io, WebRTC, full stack developer, React, Next.js',
+  authors: [{ name: 'Aditya' }],
 }
 
 export const viewport = {
