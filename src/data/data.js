@@ -138,44 +138,45 @@ export const portfolioData = {
     "Top 3% global ranking on LeetCode with Knight level",
     "Leetcode 1200+ Problem solved"
   ],
-  certifications: [
-    {
-      name: "IBM SkillsBuild",
-      issuer: "IBM",
-      year: "2025",
-      description: "Advanced certification covering statistical analysis, data visualization, and predictive modeling"
-    },
-    {
-      name: "Problem Solving in Python",
-      issuer: "HackerRank",
-      year: "2025",
-      description: "Intensive training program covering artificial intelligence algorithms and machine learning techniques"
-    },
-    {
-      name: "SQL for Database",
-      issuer: "OneRoadmap",
-      year: "2025",
-      description: "Comprehensive course covering Python programming for data analysis, pandas, numpy, and data visualization"
-    },
-    {
-      name: "React.js Certification",
-      issuer: "OneRoadmap",
-      year: "2025",
-      description: "Comprehensive course covering Python programming for data analysis, pandas, numpy, and data visualization"
-    },
-    {
-      name: "Javascript Certification",
-      issuer: "OneRoadmap",
-      year: "2025",
-      description: "Comprehensive course covering Python programming for data analysis, pandas, numpy, and data visualization"
-    },
-    {
-      name: "Node.js Certification",
-      issuer: "OneRoadmap",
-      year: "2025",
-      description: "Comprehensive course covering Python programming for data analysis, pandas, numpy, and data visualization"
-    }
-  ]
+ certifications: [
+  {
+    name: "IBM SkillsBuild",
+    issuer: "IBM",
+    year: "2025",
+    description: "Advanced certification in statistical analysis, data visualization, predictive modeling, and real-world IBM tools for data-driven decision making."
+  },
+  {
+    name: "Problem Solving in Python",
+    issuer: "HackerRank",
+    year: "2025",
+    description: "Intensive program focusing on Python programming, problem-solving techniques, algorithm design, and practical coding challenges."
+  },
+  {
+    name: "SQL for Database",
+    issuer: "OneRoadmap",
+    year: "2025",
+    description: "Comprehensive course on SQL queries, database design, data manipulation, joins, indexing, and relational database management systems."
+  },
+  {
+    name: "React.js Certification",
+    issuer: "OneRoadmap",
+    year: "2025",
+    description: "In-depth training in React.js framework, including component-based architecture, state management, hooks, and building responsive web applications."
+  },
+  {
+    name: "Javascript Certification",
+    issuer: "OneRoadmap",
+    year: "2025",
+    description: "Complete coverage of JavaScript programming, DOM manipulation, ES6+ features, asynchronous programming, and modern frontend development practices."
+  },
+  {
+    name: "Node.js Certification",
+    issuer: "OneRoadmap",
+    year: "2025",
+    description: "Comprehensive Node.js course covering server-side development, Express.js, RESTful APIs, database integration, and building scalable web applications."
+  }
+]
+
 },
 
 
