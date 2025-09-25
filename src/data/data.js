@@ -14,7 +14,7 @@ export const portfolioData = {
   },
 
   about: {
-    description: "I'm a passionate about DSA and Web Developer with expertise in turning complex data into actionable insights and building seamless digital experiences. Currently pursuing B.C.A. and constantly exploring the intersection of Data Structure and web technologies.",
+    description: "I'm a passionate about DSA and Web Developer with expertise in turning complex data into actionable insights and building seamless digital experiences. Currently pursuing B.C.A. and constantly exploring the intersection of Data Structure and web technologies. Recognized as a University Topper 🏆 and ranked in the Top 3% globally on LeetCode, where I have reached Knight level with a 1900+ rating.",
     highlights: [
       "2+ years of experience in DSA and web development",
       "Built 2 production-ready applications",
@@ -23,7 +23,7 @@ export const portfolioData = {
     ],
     stats: [
       { label: "Projects Completed", value: "20+" },
-      { label: "Technologies Mastered", value: "7+" },
+      { label: "Technologies Knows", value: "10+" },
       { label: "Lines of Code", value: "50K+" },
       { label: "Coffee Cups", value: "∞" }
     ]
@@ -35,7 +35,7 @@ export const portfolioData = {
     title: "CodeDoodle",
     description:
       "Built a robust data pipeline with automated weekly updates to analyze Amazon laptop prices, featuring an interactive dashboard with advanced filters and highlights for seamless price comparisons and brand insights.",
-    tech: ["React", "MongoDB", "Sockets","Gemini Api", "Node.js","WebRTC"],
+    tech: ["React", "MongoDB", "Sockets","Gemini Api", "Node.js","WebRTC","Express.js"],
     image: "./codedoodle.png",
     github: "https://github.com/aditya-kumar-patraan1/Code-Doodle-Editor",
     live: "https://code-doodle-editor.vercel.app/",
@@ -61,8 +61,8 @@ export const portfolioData = {
     title: "IntelliCare",
     description:
       "Designed an ML model to predict student performance based on input factors. Deployed with Streamlit for user-friendly interaction and visualization.",
-    tech: ["Python", "scikit-learn", "Streamlit", "pandas"],
-    image: "/intellicare.png",
+    tech: ["React", "MongoDB", "Sockets","Gemini Api", "Node.js","WebRTC","Express.js"],
+      image: "/intellicare.png",
     github: "https://github.com/aditya-kumar-patraan1/Dr_IntelliCare",
     live: "https://intelli-care.vercel.app/",
     category: "Full Stack",
@@ -86,92 +86,104 @@ export const portfolioData = {
 ]
 ,
 
-  skills: {
-    languages: [
-      { name: "Python", level: 45, icon: "🐍" },
-      { name: "JavaScript", level: 50, icon: "🟨" },
-      { name: "C++", level: 96, icon: "⚡" },
-      { name: "HTML", level: 90, icon: "🌐" },
-      { name: "CSS", level: 90, icon: "🎨" }
-    ],
-    frameworks: [
-      { name: "React", level: 84, icon: "⚛️" },
-      { name: "Next.js", level: 20, icon: "▲" },
-      { name: "Tailwind CSS", level: 87, icon: "💨" },
-    ],
-    dataScience: [
-      { name: "pandas", level: 50, icon: "🐼" },
-      { name: "Numpy", level: 45, icon: "🔢" },
-    ],
-    tools: [
-      { name: "Git/GitHub", level: 95, icon: "🔧" },
-      { name: "VS Code", level: 95, icon: "💻" },
-      { name: "Vercel", level: 75, icon: "📉" },
-    ]
-  },
+  skills :{
+  languages: [
+    { name: "Python", level: 45, icon: "🐍" },
+    { name: "JavaScript", level: 50, icon: "🟨" },
+    { name: "C++", level: 96, icon: "⚡" },
+    { name: "HTML", level: 90, icon: "🌐" },
+    { name: "CSS", level: 90, icon: "🎨" }
+  ],
+  frameworks: [
+    { name: "React", level: 84, icon: "⚛️" },
+    { name: "Next.js", level: 20, icon: "▲" },
+    { name: "Tailwind CSS", level: 87, icon: "💨" },
+  ],
+  dataScience: [
+    { name: "pandas", level: 50, icon: "🐼" },
+    { name: "Numpy", level: 45, icon: "🔢" },
+  ],
+  tools: [
+    { name: "Git/GitHub", level: 95, icon: "🔧" },
+    { name: "VS Code", level: 95, icon: "💻" },
+    { name: "Vercel", level: 75, icon: "📉" },
+  ],
+  backend: [
+    { name: "Node.js", level: 85, icon: "🟩" },
+    { name: "Express.js", level: 70, icon: "🚂" },
+  ],
+  databases: [
+    { name: "MongoDB", level: 76, icon: "🍃" },
+    { name: "SQL", level: 89, icon: "🗄️" },
+  ],
+  realtime: [
+    { name: "Socket.IO", level: 65, icon: "🔌" },
+    { name: "WebRTC", level: 60, icon: "📹" },
+  ]},
 
-  education: {
-    degree: "Bachelor of Computer Applications",
-    institution: "MSI Janakpuri",
-    year: "2023 - 2026",
-    status: "3rd Year (Currently Pursuing)",
-    gpa: "9.873/10",
-    coursework: [
-      "Data Structures & Algorithms",
-      "Database Management Systems",
-      "Javascript",
-      "Full Stack Web Development",
-      "Software Engineering",
-      "Computer Networks",
-      "Sockets/WebRTC",
-      "C/C++"
-    ],
-    achievements: [
-      "SDC member",
-      "AI Prompt Competition (2nd Position)",
-      "Top 3% global ranking on LeetCode with Knight level",
-      "Leetcode 1200+ Problem solved"
-    ],
-    certifications: [
-      
-      {
-        name: "IBM SkillsBuild",
-        issuer: "IBM",
-        year: "2025",
-        description: "Advanced certification covering statistical analysis, data visualization, and predictive modeling"
-      },
-      {
-        name: "Problem Solving in python",
-        issuer: "HackerRank",
-        year: "2025",
-        description: "Intensive training program covering artificial intelligence algorithms and machine learning techniques"
-      },
-      {
-        name: "SQL for Database",
-        issuer: "OneRoadmap",
-        year: "2025",
-        description: "Comprehensive course covering Python programming for data analysis, pandas, numpy, and data visualization"
-      },
-      {
-        name: "React.js Certification",
-        issuer: "OneRoadmap",
-        year: "2025",
-        description: "Comprehensive course covering Python programming for data analysis, pandas, numpy, and data visualization"
-      },
-      {
-        name: "Javascript Certification",
-        issuer: "OneRoadmap",
-        year: "2025",
-        description: "Comprehensive course covering Python programming for data analysis, pandas, numpy, and data visualization"
-      },
-      {
-        name: "Node.js Certification",
-        issuer: "OneRoadmap",
-        year: "2025",
-        description: "Comprehensive course covering Python programming for data analysis, pandas, numpy, and data visualization"
-      }
-    ]
-  },
+ education : {
+  degree: "Bachelor of Computer Applications",
+  institution: "MSI Janakpuri",
+  year: "2023 - 2026",
+  status: "3rd Year (Currently Pursuing)",
+  gpa: "9.873/10",
+  coursework: [
+    "Data Structures & Algorithms",
+    "Database Management Systems",
+    "Javascript",
+    "Full Stack Web Development",
+    "Software Engineering",
+    "Computer Networks",
+    "Sockets/WebRTC",
+    "C/C++"
+  ],
+  achievements: [
+    "University Topper 🏆",
+    "SDC member",
+    "AI Prompt Competition (2nd Position)",
+    "Top 3% global ranking on LeetCode with Knight level",
+    "Leetcode 1200+ Problem solved"
+  ],
+  certifications: [
+    {
+      name: "IBM SkillsBuild",
+      issuer: "IBM",
+      year: "2025",
+      description: "Advanced certification covering statistical analysis, data visualization, and predictive modeling"
+    },
+    {
+      name: "Problem Solving in Python",
+      issuer: "HackerRank",
+      year: "2025",
+      description: "Intensive training program covering artificial intelligence algorithms and machine learning techniques"
+    },
+    {
+      name: "SQL for Database",
+      issuer: "OneRoadmap",
+      year: "2025",
+      description: "Comprehensive course covering Python programming for data analysis, pandas, numpy, and data visualization"
+    },
+    {
+      name: "React.js Certification",
+      issuer: "OneRoadmap",
+      year: "2025",
+      description: "Comprehensive course covering Python programming for data analysis, pandas, numpy, and data visualization"
+    },
+    {
+      name: "Javascript Certification",
+      issuer: "OneRoadmap",
+      year: "2025",
+      description: "Comprehensive course covering Python programming for data analysis, pandas, numpy, and data visualization"
+    },
+    {
+      name: "Node.js Certification",
+      issuer: "OneRoadmap",
+      year: "2025",
+      description: "Comprehensive course covering Python programming for data analysis, pandas, numpy, and data visualization"
+    }
+  ]
+},
+
 
 blogs: [
   {

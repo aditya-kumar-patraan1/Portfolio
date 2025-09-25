@@ -108,12 +108,33 @@ const Skills = () => {
             icon="🔧"
           />
 
+          <SkillCategory
+            title="Backend"
+            skills={portfolioData.skills.backend}
+            gradient="from-blue-500 to-purple-500"
+            icon="🍃"
+          />
+
           {/* Data Science */}
           <SkillCategory
             title="Data Science & ML"
             skills={portfolioData.skills.dataScience}
             gradient="from-pink-500 to-red-500"
             icon="🧠"
+          />
+
+          <SkillCategory
+            title="Database"
+            skills={portfolioData.skills.databases}
+            gradient="from-blue-500 to-purple-500"
+            icon="🍃"
+          />
+
+          <SkillCategory
+            title="Realtime Connection"
+            skills={portfolioData.skills.realtime}
+            gradient="from-blue-500 to-purple-500"
+            icon="🍃"
           />
 
           {/* Tools */}
@@ -123,6 +144,9 @@ const Skills = () => {
             gradient="from-green-500 to-blue-500"
             icon="🛠️"
           />
+
+        
+
         </div>
 
         {/* Additional Info */}

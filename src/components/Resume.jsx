@@ -469,6 +469,28 @@ const Resume = () => {
                   ))}
                 </div>
 
+                {/* Backend */}
+                <div className="mb-8">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                    <Zap className="w-4 h-4 mr-2 text-yellow-600 dark:text-yellow-400" />
+                    Backend
+                  </h3>
+                  {portfolioData.skills.backend.map((skill, index) => (
+                    <SkillBar key={index} skill={skill} index={index} delay={2.5} />
+                  ))}
+                </div>
+
+                  {/* socket */}
+                <div className="mb-8">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                    <Zap className="w-4 h-4 mr-2 text-yellow-600 dark:text-yellow-400" />
+                    Realtime
+                  </h3>
+                  {portfolioData.skills.realtime.map((skill, index) => (
+                    <SkillBar key={index} skill={skill} index={index} delay={2.5} />
+                  ))}
+                </div>
+
                 {/* Data Science */}
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">

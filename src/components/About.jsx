@@ -53,7 +53,7 @@ const About = () => {
                 <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"> Data-Driven Insights</span>
               </h3>
               
-              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-md">
                 {portfolioData.about.description}
               </p>
             </div>

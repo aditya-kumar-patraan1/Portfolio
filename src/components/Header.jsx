@@ -29,7 +29,6 @@ const Header = () => {
     { name: 'Projects', href: '#projects', isSection: true },
     { name: 'Skills', href: '#skills', isSection: true },
     { name: 'Education', href: '#education', isSection: true },
-    { name: 'Blog', href: '#blog', isSection: true },
     { name: 'Resume', href: '/resume', isSection: false },
     { name: 'Leetcode', href: '/leetcode', isSection: false },
     { name: 'Contact', href: '#contact', isSection: true },
