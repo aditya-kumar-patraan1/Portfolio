@@ -29,13 +29,13 @@ export const portfolioData = {
     ]
   },
 
-  projects: [
-    {
+ projects: [
+  {
     id: 7,
     title: "CodeDoodle",
     description:
-      "Built a robust data pipeline with automated weekly updates to analyze Amazon laptop prices, featuring an interactive dashboard with advanced filters and highlights for seamless price comparisons and brand insights.",
-    tech: ["React", "MongoDB", "Sockets","Gemini Api", "Node.js","WebRTC","Express.js"],
+      "A real-time code collaboration platform where developers can code together, meet face-to-face, use a chatbot and code reviewer, and save code in multiple programming languages.",
+    tech: ["React", "MongoDB", "Sockets", "Gemini Api", "Node.js", "WebRTC", "Express.js"],
     image: "./codedoodle.png",
     github: "https://github.com/aditya-kumar-patraan1/Code-Doodle-Editor",
     live: "https://code-doodle-editor.vercel.app/",
@@ -43,11 +43,10 @@ export const portfolioData = {
     featured: true
   },
   {
-    
     id: 1,
     title: "ElvaTree",
     description:
-      "Developed a responsive AI assistant platform featuring an intuitive and conversational interface. Offers intelligent responses using Gemini API while ensuring seamless UX across devices.",
+      "A dashboard platform featuring raffle systems, purchase/sell with credits to win prizes, analysis of previous transactions, and a code reviewer that detects errors and suggests correct code.",
     tech: ["React", "Javascript", "Tailwind CSS"],
     image: "./elvatree.png",
     github: "https://github.com/aditya-kumar-patraan1/ElvaTree-Task",
@@ -55,25 +54,23 @@ export const portfolioData = {
     category: "Full Stack",
     featured: true
   },
-  
   {
     id: 3,
     title: "IntelliCare",
     description:
-      "Designed an ML model to predict student performance based on input factors. Deployed with Streamlit for user-friendly interaction and visualization.",
-    tech: ["React", "MongoDB", "Sockets","Gemini Api", "Node.js","WebRTC","Express.js"],
-      image: "/intellicare.png",
+      "An AI-based medical platform where users can locate nearby hospitals, schedule face-to-face meetings, get remedial suggestions from an AI assistant, manage appointments, and save documents as PDFs.",
+    tech: ["React", "MongoDB", "Sockets", "Gemini Api", "Node.js", "WebRTC", "Express.js"],
+    image: "/intellicare.png",
     github: "https://github.com/aditya-kumar-patraan1/Dr_IntelliCare",
     live: "https://intelli-care.vercel.app/",
     category: "Full Stack",
     featured: true
   },
-  
   {
     id: 4,
     title: "Code Reviewer",
     description:
-      "A self-growth dashboard to monitor personal progress in areas like skills, health, finances, and mood. Offers time tracking, AI-based suggestions, and dynamic visualizations.",
+      "A tool that allows developers to submit code and receive instant feedback, highlighting mistakes, errors, and providing correct code suggestions for self-improvement.",
     tech: ["React", "Tailwind CSS", "Gemini API"],
     image: "/codereviewer.png",
     github: "https://github.com/aditya-kumar-patraan1/CodeReviewer",
@@ -81,10 +78,7 @@ export const portfolioData = {
     category: "Full Stack",
     featured: true
   }
-  
-  
-]
-,
+],
 
   skills :{
   languages: [
@@ -144,44 +138,45 @@ export const portfolioData = {
     "Top 3% global ranking on LeetCode with Knight level",
     "Leetcode 1200+ Problem solved"
   ],
-  certifications: [
-    {
-      name: "IBM SkillsBuild",
-      issuer: "IBM",
-      year: "2025",
-      description: "Advanced certification covering statistical analysis, data visualization, and predictive modeling"
-    },
-    {
-      name: "Problem Solving in Python",
-      issuer: "HackerRank",
-      year: "2025",
-      description: "Intensive training program covering artificial intelligence algorithms and machine learning techniques"
-    },
-    {
-      name: "SQL for Database",
-      issuer: "OneRoadmap",
-      year: "2025",
-      description: "Comprehensive course covering Python programming for data analysis, pandas, numpy, and data visualization"
-    },
-    {
-      name: "React.js Certification",
-      issuer: "OneRoadmap",
-      year: "2025",
-      description: "Comprehensive course covering Python programming for data analysis, pandas, numpy, and data visualization"
-    },
-    {
-      name: "Javascript Certification",
-      issuer: "OneRoadmap",
-      year: "2025",
-      description: "Comprehensive course covering Python programming for data analysis, pandas, numpy, and data visualization"
-    },
-    {
-      name: "Node.js Certification",
-      issuer: "OneRoadmap",
-      year: "2025",
-      description: "Comprehensive course covering Python programming for data analysis, pandas, numpy, and data visualization"
-    }
-  ]
+ certifications: [
+  {
+    name: "IBM SkillsBuild",
+    issuer: "IBM",
+    year: "2025",
+    description: "Advanced certification in statistical analysis, data visualization, predictive modeling, and real-world IBM tools for data-driven decision making."
+  },
+  {
+    name: "Problem Solving in Python",
+    issuer: "HackerRank",
+    year: "2025",
+    description: "Intensive program focusing on Python programming, problem-solving techniques, algorithm design, and practical coding challenges."
+  },
+  {
+    name: "SQL for Database",
+    issuer: "OneRoadmap",
+    year: "2025",
+    description: "Comprehensive course on SQL queries, database design, data manipulation, joins, indexing, and relational database management systems."
+  },
+  {
+    name: "React.js Certification",
+    issuer: "OneRoadmap",
+    year: "2025",
+    description: "In-depth training in React.js framework, including component-based architecture, state management, hooks, and building responsive web applications."
+  },
+  {
+    name: "Javascript Certification",
+    issuer: "OneRoadmap",
+    year: "2025",
+    description: "Complete coverage of JavaScript programming, DOM manipulation, ES6+ features, asynchronous programming, and modern frontend development practices."
+  },
+  {
+    name: "Node.js Certification",
+    issuer: "OneRoadmap",
+    year: "2025",
+    description: "Comprehensive Node.js course covering server-side development, Express.js, RESTful APIs, database integration, and building scalable web applications."
+  }
+]
+
 },
 
 

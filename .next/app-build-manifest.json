@@ -1,10 +1,9 @@
 {
   "pages": {
-    "/leetcode/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/leetcode/page.css",
-      "static/chunks/app/leetcode/page.js"
+      "static/chunks/app/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",

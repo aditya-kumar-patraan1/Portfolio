@@ -1,6 +1,6 @@
-# 🚀 Vikas Gulia - Portfolio Website
+# 🚀 Aditya Kumar - Portfolio Website
 
-A modern, responsive portfolio website showcasing my journey as a Data Scientist and Full-Stack Developer. Built with cutting-edge technologies and featuring stunning animations, dark/light theme support, and comprehensive project showcase.
+A modern, responsive portfolio website showcasing my journey as a DSA lover and Full-Stack Developer. Built with cutting-edge technologies and featuring stunning animations, dark/light theme support, and comprehensive project showcase.
 
 ![Portfolio Preview](https://img.shields.io/badge/Status-Live-brightgreen)
 ![Next.js](https://img.shields.io/badge/Next.js-15.4.4-black)
