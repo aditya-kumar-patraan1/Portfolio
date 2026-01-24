@@ -1,8 +1,8 @@
-// data for Vikas Gulia's Portfolio
+// data for Aditya Kumar's Portfolio
 export const portfolioData = {
   personal: {
     name: "Aditya Kumar",
-    title: "Full Stack Developer & DSA Enthusiastic",
+    title: "Full Stack Developer & DSA Enthusiast",
     tagline: "Transforming logic into clarity and code into creativity.",
     email: "adityakrp2006@gmail.com",
     phone: "+91 7982489836",
@@ -117,7 +117,7 @@ export const portfolioData = {
 
  education : {
   degree: "Bachelor of Computer Applications",
-  institution: "MSI Janakpuri",
+  institution: "Maharaja Surajmal Institute, GGSIPU",
   year: "2023 - 2026",
   status: "3rd Year (Currently Pursuing)",
   gpa: "9.873/10",
