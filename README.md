@@ -3,7 +3,6 @@
 A modern, responsive portfolio website showcasing my journey as a DSA lover and Full-Stack Developer. Built with cutting-edge technologies and featuring stunning animations, dark/light theme support, and comprehensive project showcase.
 
 ![Portfolio Preview](https://img.shields.io/badge/Status-Live-brightgreen)
-![Next.js](https://img.shields.io/badge/Next.js-15.4.4-black)
 ![React](https://img.shields.io/badge/React-19.1.0-blue)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.1.11-blue)
 
