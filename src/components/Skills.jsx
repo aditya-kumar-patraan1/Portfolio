@@ -1,188 +1,112 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 import { portfolioData } from '../data/data'
 
-const Skills = () => {
-  const skillsRef = useRef(null)
+const cats = [
+  { key: 'languages',   label: 'Languages',       prog: 'prog-indigo', tag: 'tag-indigo', accent: 'var(--indigo)',  icon: '</>' },
+  { key: 'frameworks',  label: 'Frameworks',       prog: 'prog-emerald', tag: 'tag-emerald', accent: 'var(--emerald)', icon: '⚛' },
+  { key: 'backend',     label: 'Backend',          prog: 'prog-cyan',   tag: 'tag-cyan',   accent: 'var(--cyan)',   icon: '⬡' },
+  { key: 'databases',   label: 'Databases',        prog: 'prog-amber',  tag: 'tag-amber',  accent: 'var(--amber)',  icon: '◫' },
+  { key: 'realtime',    label: 'Realtime / WebRTC',prog: 'prog-rose',   tag: 'tag-rose',   accent: 'var(--rose)',   icon: '◈' },
+  { key: 'dataScience', label: 'Data Science',     prog: 'prog-amber',  tag: 'tag-amber',  accent: 'var(--amber)',  icon: '∫' },
+  { key: 'tools',       label: 'Dev Tools',        prog: 'prog-indigo', tag: 'tag-indigo', accent: 'var(--indigo)', icon: '⚙' },
+]
 
- useEffect(() => {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in-up')
+const SkillRow = ({ skill, prog }) => {
+  const [fired, setFired] = useState(false)
+  const ref = useRef(null)
+  useEffect(() => {
+    const ob = new IntersectionObserver(([e]) => { if (e.isIntersecting) setFired(true) }, { threshold: 0.4 })
+    if (ref.current) ob.observe(ref.current)
+    return () => ob.disconnect()
+  }, [])
 
-          // Animate progress bars
-          const progressBars = entry.target.querySelectorAll('.progress-bar')
-          progressBars.forEach((bar, index) => {
-            const level = bar.getAttribute('data-level')
-            setTimeout(() => {
-              bar.style.width = `${level}%`
-            }, 300 + index * 100)
-          })
-        }
-      })
-    },
-    { threshold: 0.1 }
-  )
-
-  if (skillsRef.current) {
-    observer.observe(skillsRef.current)
-  }
-
-  return () => observer.disconnect()
-}, [])
-
-
-  const SkillCategory = ({ title, skills, gradient, icon }) => (
-    <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-      <div className="flex items-center space-x-3 mb-6">
-        <div className={`w-10 h-10 bg-gradient-to-r ${gradient} rounded-lg flex items-center justify-center text-white font-bold`}>
-          {icon}
+  return (
+    <div ref={ref}>
+      <div className="flex justify-between items-center mb-1.5">
+        <div className="flex items-center gap-2 text-sm">
+          <span>{skill.icon}</span>
+          <span style={{ color: 'var(--text-2)' }}>{skill.name}</span>
         </div>
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white">{title}</h3>
+        <span className="mono text-xs font-bold" style={{ color: 'var(--text-3)' }}>{skill.level}%</span>
       </div>
-      
-      <div className="space-y-4">
-        {skills.map((skill, index) => (
-          <div key={index} className="group">
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center space-x-2">
-                <span className="text-lg">{skill.icon}</span>
-                <span className="font-medium text-gray-700 dark:text-gray-300">{skill.name}</span>
-              </div>
-              <span className="text-sm font-semibold text-purple-600 dark:text-purple-400">{skill.level}%</span>
-            </div>
-            
-            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
-              <div
-                className={`progress-bar h-full bg-gradient-to-r ${gradient} rounded-full transition-all duration-1000 ease-out`}
-                data-level={skill.level}
-                style={{ width: '0%' }}
-              ></div>
-            </div>
-          </div>
-        ))}
+      <div className="prog-track">
+        <motion.div className={`prog-fill ${prog}`}
+          initial={{ width: 0 }} animate={{ width: fired ? `${skill.level}%` : 0 }}
+          transition={{ duration: 1.1, ease: [0.4,0,0.2,1] }} />
       </div>
     </div>
   )
+}
+
+const SkillCard = ({ cat }) => {
+  const data = portfolioData.skills[cat.key]
+  if (!data?.length) return null
 
   return (
-    <section id="skills"  ref={skillsRef} className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16 opacity-100 transform translate-y-8 transition-all duration-1000 ">
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <div className="w-8 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
-            <h2 className="text-sm font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-wide">
-              Skills & Expertise
-            </h2>
-            <div className="w-8 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
-          </div>
-          
-          <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Technical <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Proficiency</span>
-          </h3>
-          
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            A comprehensive overview of my technical skills and expertise across various technologies and domains.
-          </p>
+    <motion.div
+      initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-30px' }} transition={{ duration: 0.55 }}
+      className="bento p-6"
+      style={{ borderLeft: `3px solid ${cat.accent}` }}
+    >
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-9 h-9 rounded-lg flex items-center justify-center font-mono font-bold text-lg"
+          style={{ background: `${cat.accent}15`, border: `1px solid ${cat.accent}30`, color: cat.accent }}>
+          {cat.icon}
         </div>
-
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Languages */}
-          <SkillCategory
-            title="Programming Languages"
-            skills={portfolioData.skills.languages}
-            gradient="from-blue-500 to-purple-500"
-            icon="💻"
-          />
-
-          {/* Frameworks */}
-          <SkillCategory
-            title="Frameworks & Libraries"
-            skills={portfolioData.skills.frameworks}
-            gradient="from-purple-500 to-pink-500"
-            icon="🔧"
-          />
-
-          <SkillCategory
-            title="Backend"
-            skills={portfolioData.skills.backend}
-            gradient="from-blue-500 to-purple-500"
-            icon="🍃"
-          />
-
-          {/* Data Science */}
-          <SkillCategory
-            title="Data Science & ML"
-            skills={portfolioData.skills.dataScience}
-            gradient="from-pink-500 to-red-500"
-            icon="🧠"
-          />
-
-          <SkillCategory
-            title="Database"
-            skills={portfolioData.skills.databases}
-            gradient="from-blue-500 to-purple-500"
-            icon="🍃"
-          />
-
-          <SkillCategory
-            title="Realtime Connection"
-            skills={portfolioData.skills.realtime}
-            gradient="from-blue-500 to-purple-500"
-            icon="🍃"
-          />
-
-          {/* Tools */}
-          <SkillCategory
-            title="Tools & Technologies"
-            skills={portfolioData.skills.tools}
-            gradient="from-green-500 to-blue-500"
-            icon="🛠️"
-          />
-
-        
-
-        </div>
-
-        {/* Additional Info */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            {
-              title: "Problem Solving",
-              description: "Analytical thinking and creative problem-solving approaches",
-              icon: "🧩",
-              gradient: "from-yellow-500 to-orange-500"
-            },
-            {
-              title: "Team Collaboration",
-              description: "Effective communication and teamwork in agile environments",
-              icon: "🤝",
-              gradient: "from-green-500 to-teal-500"
-            },
-            {
-              title: "Continuous Learning",
-              description: "Staying updated with latest technologies and best practices",
-              icon: "📚",
-              gradient: "from-indigo-500 to-purple-500"
-            }
-          ].map((item, index) => (
-            <div key={index} className="text-center">
-              <div className={`w-16 h-16 bg-gradient-to-r ${item.gradient} rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg`}>
-                <span className="text-2xl">{item.icon}</span>
-              </div>
-              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{item.title}</h4>
-              <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
-            </div>
-          ))}
-        </div>
+        <h3 className="syne font-bold text-sm" style={{ color: 'var(--text-1)' }}>{cat.label}</h3>
+        <span className={`tag ${cat.tag} ml-auto`}>{data.length} skills</span>
       </div>
-    </section>
+      <div className="space-y-4">
+        {data.map((s) => <SkillRow key={s.name} skill={s} prog={cat.prog} />)}
+      </div>
+    </motion.div>
   )
 }
+
+const Skills = () => (
+  <section id="skills" className="section" style={{ background: 'var(--bg-0)' }}>
+    <div className="absolute top-0 left-0 right-0 h-px"
+      style={{ background: 'linear-gradient(90deg, transparent, var(--emerald), var(--cyan), transparent)' }} />
+
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-16">
+        <p className="mono text-xs mb-3" style={{ color: 'var(--text-3)' }}>// 02. skills</p>
+        <h2 className="syne text-4xl sm:text-5xl font-extrabold" style={{ color: 'var(--text-1)' }}>
+          Technical<br />
+          <span className="text-gradient-indigo">Arsenal.</span>
+        </h2>
+      </motion.div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
+        {cats.map((c) => <SkillCard key={c.key} cat={c} />)}
+      </div>
+
+      {/* Soft skills row */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {[
+          { icon: '🧩', title: 'Problem Solving', desc: 'Analytical & creative thinking', color: 'var(--amber)' },
+          { icon: '🤝', title: 'Collaboration',   desc: 'Agile team environments',        color: 'var(--emerald)' },
+          { icon: '📚', title: 'Always Learning', desc: 'Staying current with tech',       color: 'var(--indigo)' },
+        ].map(({ icon, title, desc, color }, i) => (
+          <motion.div key={title}
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+            whileHover={{ scale: 1.03 }}
+            className="card-brutal p-5 text-center"
+          >
+            <div className="text-3xl mb-3">{icon}</div>
+            <p className="syne font-bold text-sm mb-1" style={{ color }}>{title}</p>
+            <p className="mono text-xs" style={{ color: 'var(--text-3)' }}>{desc}</p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </section>
+)
 
 export default Skills

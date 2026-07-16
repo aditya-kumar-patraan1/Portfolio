@@ -16,33 +16,39 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('dark');
   const [mounted, setMounted] = useState(false);
 
-  // On mount, read the preferred theme from localStorage
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    setTheme(savedTheme);
+    // Check localStorage first, then system preference, default to dark
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+      setTheme(saved);
+    } else {
+      // Respect system preference on first visit
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(prefersDark ? 'dark' : 'light');
+    }
     setMounted(true);
   }, []);
 
-  // Update the html tag class and persist theme whenever it changes
   useEffect(() => {
-    if (!mounted) return; // Prevent running on server or before hydration
-    
+    if (!mounted) return;
     document.documentElement.classList.remove('light', 'dark');
     document.documentElement.classList.add(theme);
     localStorage.setItem('theme', theme);
+    // Update meta theme-color
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.content = theme === 'dark' ? '#050816' : '#f8fafc';
+    }
   }, [theme, mounted]);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
 
-  // Don't render children until mounted to avoid hydration mismatch
-  if (!mounted) {
-    return null;
-  }
+  if (!mounted) return null;
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, mounted, isDark: theme === 'dark' }}>
       {children}
     </ThemeContext.Provider>
   );

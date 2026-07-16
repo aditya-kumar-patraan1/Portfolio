@@ -1,139 +1,141 @@
 'use client'
 
-import React from 'react'
-import { Heart, Github, Linkedin, Instagram, ArrowUp } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Heart, Github, Linkedin, Instagram, ArrowUp, Terminal } from 'lucide-react'
 import { portfolioData } from '../data/data'
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  const [fab, setFab] = useState(false)
+  useEffect(() => {
+    const h = () => setFab(window.scrollY > 400)
+    window.addEventListener('scroll', h, { passive: true })
+    return () => window.removeEventListener('scroll', h)
+  }, [])
 
-  const currentYear = new Date().getFullYear()
+  const year = new Date().getFullYear()
+  const links = [
+    { name: 'About', href: '#about' }, { name: 'Projects', href: '#projects' },
+    { name: 'Skills', href: '#skills' }, { name: 'Education', href: '#education' },
+    { name: 'Contact', href: '#contact' },
+  ]
+  const socials = [
+    { href: portfolioData.personal.github,    Icon: Github,    label: 'GitHub' },
+    { href: portfolioData.personal.linkedin,  Icon: Linkedin,  label: 'LinkedIn' },
+    { href: portfolioData.personal.instagram, Icon: Instagram, label: 'Instagram' },
+  ]
 
   return (
-    <footer className="bg-gray-900 dark:bg-black text-white">
-      {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand Section */}
-          <div className="md:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                {portfolioData.personal.name}
+    <>
+      <footer style={{ background: 'var(--bg-0)', borderTop: '1px solid var(--border-2)' }}>
+        {/* Rainbow line */}
+        <div className="h-px w-full"
+          style={{ background: 'linear-gradient(90deg, var(--indigo), var(--emerald), var(--amber), var(--rose), var(--cyan), var(--indigo))' }} />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {/* Brand */}
+            <div>
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center border"
+                  style={{ background: 'linear-gradient(135deg, #6366f1, #818cf8)', borderColor: 'rgba(129,140,248,0.4)' }}>
+                  <Terminal className="w-4 h-4 text-white" />
+                </div>
+                <div className="syne font-bold text-xl">
+                  <span style={{ color: 'var(--text-1)' }}>Aditya</span>
+                  <span className="text-gradient-indigo">.</span>
+                </div>
+              </div>
+              <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--text-3)' }}>
+                {portfolioData.personal.tagline}
+              </p>
+              <div className="flex gap-2">
+                {socials.map(({ href, Icon, label }) => (
+                  <motion.a key={label} href={href} target="_blank" rel="noopener noreferrer"
+                    aria-label={label}
+                    className="w-9 h-9 rounded-lg flex items-center justify-center border transition-all"
+                    style={{ background: 'var(--surface)', borderColor: 'var(--border-2)', color: 'var(--text-3)' }}
+                    whileHover={{ scale: 1.12, color: 'var(--indigo-bright)', borderColor: 'rgba(129,140,248,0.4)' }}>
+                    <Icon className="w-4 h-4" />
+                  </motion.a>
+                ))}
               </div>
             </div>
-            
-            <p className="text-gray-300 mb-6 max-w-md">
-              {portfolioData.personal.tagline}
-            </p>
 
-            {/* Social Links */}
-            <div className="flex space-x-4">
-              <a
-                href={portfolioData.personal.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-purple-600 transition-all duration-300 transform hover:scale-110"
-              >
-                <Github className="w-5 h-5" />
-              </a>
-              <a
-                href={portfolioData.personal.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-purple-600 transition-all duration-300 transform hover:scale-110"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href={portfolioData.personal.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-purple-600 transition-all duration-300 transform hover:scale-110"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
+            {/* Nav */}
+            <div>
+              <p className="mono text-xs uppercase tracking-wider mb-5" style={{ color: 'var(--text-3)' }}>Sections</p>
+              <ul className="space-y-2.5">
+                {links.map(l => (
+                  <li key={l.name}>
+                    <button
+                      onClick={() => document.querySelector(l.href)?.scrollIntoView({ behavior: 'smooth' })}
+                      className="text-sm transition-colors focus:outline-none hover:translate-x-1 transform inline-block"
+                      style={{ color: 'var(--text-2)' }}
+                      onMouseEnter={e => e.currentTarget.style.color = 'var(--indigo-bright)'}
+                      onMouseLeave={e => e.currentTarget.style.color = 'var(--text-2)'}
+                    >
+                      <span style={{ color: 'var(--indigo)', marginRight: 6 }}>›</span>{l.name}
+                    </button>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              {[
-                { name: 'About', href: '#about' },
-                { name: 'Projects', href: '#projects' },
-                { name: 'Skills', href: '#skills' },
-                { name: 'Contact', href: '#contact' }
-              ].map((link) => (
-                <li key={link.name}>
-                  <button
-                    onClick={() => {
-                      const element = document.querySelector(link.href)
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' })
-                      }
-                    }}
-                    className="text-gray-300 hover:text-purple-400 transition-colors duration-200 cursor-pointer focus:outline-none"
-                  >
-                    {link.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Get In Touch</h4>
-            <ul className="space-y-2 text-gray-300">
-              <li>
-                <a 
-                  href={`mailto:${portfolioData.personal.email}`}
-                  className="hover:text-purple-400 transition-colors duration-200"
-                >
+            {/* Contact snippet */}
+            <div>
+              <p className="mono text-xs uppercase tracking-wider mb-5" style={{ color: 'var(--text-3)' }}>Contact</p>
+              <div className="space-y-2.5 text-sm" style={{ color: 'var(--text-2)' }}>
+                <a href={`mailto:${portfolioData.personal.email}`}
+                  className="block transition-colors"
+                  onMouseEnter={e => e.currentTarget.style.color = 'var(--indigo-bright)'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'var(--text-2)'}>
                   {portfolioData.personal.email}
                 </a>
-              </li>
-              <li>{portfolioData.personal.location}</li>
-              <li className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-sm">Available for freelance</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-1 text-gray-300 mb-4 md:mb-0">
-              <span>© {currentYear} Made with</span>
-              <Heart className="w-4 h-4 text-red-500 animate-pulse" />
-              <span>by {portfolioData.personal.name}</span>
+                <p style={{ color: 'var(--text-3)' }}>{portfolioData.personal.location}</p>
+                <div className="flex items-center gap-2 mono text-xs mt-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span style={{ color: 'var(--emerald)' }}>Available for work</span>
+                </div>
+              </div>
             </div>
-            
-            {/* Back to Top */}
-            <button
-              onClick={scrollToTop}
-              className="flex items-center space-x-2 text-gray-300 hover:text-purple-400 transition-colors duration-200 focus:outline-none group"
-            >
-              <span>Back to top</span>
-              <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform duration-200" />
-            </button>
           </div>
         </div>
-      </div>
 
-      {/* Floating Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full opacity-5 blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-500 rounded-full opacity-5 blur-3xl"></div>
-      </div>
-    </footer>
+        {/* Bottom */}
+        <div className="border-t" style={{ borderColor: 'var(--border-2)' }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div className="mono text-xs flex items-center gap-1.5" style={{ color: 'var(--text-3)' }}>
+              © {year} <span style={{ color: 'var(--indigo-bright)' }}>{portfolioData.personal.name}</span>
+              <span className="mx-1">·</span>
+              Built with <Heart className="w-3 h-3 text-rose-500 fill-current" /> and caffeine ☕
+            </div>
+            <div className="mono text-xs" style={{ color: 'var(--text-3)' }}>
+              Next.js · Tailwind · Framer Motion
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* FAB */}
+      <AnimatePresence>
+        {fab && (
+          <motion.button
+            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 16 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            aria-label="Back to top"
+            className="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-xl flex items-center justify-center text-white border focus:outline-none"
+            style={{
+              background: 'linear-gradient(135deg, #6366f1, #818cf8)',
+              borderColor: 'rgba(129,140,248,0.4)',
+              boxShadow: '0 0 24px rgba(99,102,241,0.4)',
+            }}
+            whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.93 }}>
+            <ArrowUp className="w-4 h-4" />
+          </motion.button>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
 

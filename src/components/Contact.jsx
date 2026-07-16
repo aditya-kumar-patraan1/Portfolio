@@ -1,290 +1,201 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram, MessageCircle } from 'lucide-react';
-import { portfolioData } from '../data/data';
+'use client'
 
-// --- UPDATED DETAILS ---
-// New Bot Token has been added to the API URL.
-const TELEGRAM_API = 'https://api.telegram.org/bot8434917178:AAE576rtrH5_SejDSaZYZWXIpnwhz8cT0cc/sendMessage';
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram, Terminal } from 'lucide-react'
+import { portfolioData } from '../data/data'
 
-// !!! IMPORTANT: You need to replace this with YOUR chat ID. !!!
-// To get your chat ID:
-// 1. Send a message to your new bot (@Aditya_Portfolio_Bot) on Telegram.
-// 2. Visit this URL in your browser: https://api.telegram.org/bot8434917178:AAE576rtrH5_SejDSaZYZWXIpnwhz8cT0cc/getUpdates
-// 3. Look for the "chat" object in the response. Your chat ID is the value of the "id" field.
-const TELEGRAM_CHAT_ID = 6974520564; // <--- REPLACE THIS VALUE
+const TGAPI = 'https://api.telegram.org/bot8434917178:AAE576rtrH5_SejDSaZYZWXIpnwhz8cT0cc/sendMessage'
+const CHAT_ID = 6974520564
+
+const Field = ({ label, name, value, onChange, type = 'text', required = true, as = 'input', rows }) => {
+  const Tag = as
+  return (
+    <div className="space-y-1.5">
+      <label htmlFor={name} className="mono text-xs uppercase tracking-wider" style={{ color: 'var(--text-3)' }}>
+        {label}{required && <span style={{ color: 'var(--rose)' }}> *</span>}
+      </label>
+      <Tag
+        id={name} name={name} type={type} value={value}
+        onChange={onChange} required={required} rows={rows}
+        className="input"
+        placeholder={`Enter your ${label.toLowerCase()}`}
+        style={{ resize: as === 'textarea' ? 'none' : undefined }}
+      />
+    </div>
+  )
+}
 
 const Contact = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
-  const contactRef = useRef(null);
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
+  const [busy, setBusy] = useState(false)
+  const [status, setStatus] = useState(null) // 'ok' | 'err'
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('animate-fade-in-up');
-      });
-    }, { threshold: 0.1 });
+  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-    if (contactRef.current) observer.observe(contactRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
-    const { name, email, subject, message } = formData;
-
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    setBusy(true); setStatus(null)
+    const { name, email, subject, message } = form
     if (name.length < 2 || message.length < 10 || !email.includes('@')) {
-      setSubmitStatus('error');
-      setIsSubmitting(false);
-      return;
+      setStatus('err'); setBusy(false); return
     }
-
-    const telegramMessage = `📬 New Contact Form Submission:\n👤 Name: ${name}\n📧 Email: ${email}\n📝 Subject: ${subject || 'N/A'}\n💬 Message: ${message}`;
-
+    const text = `📬 Portfolio Contact\n👤 ${name}\n📧 ${email}\n📝 ${subject || 'N/A'}\n💬 ${message}`
     try {
-      const response = await fetch(TELEGRAM_API, {
+      const res = await fetch(TGAPI, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: telegramMessage }),
-      });
-      const result = await response.json();
-
-      if (!response.ok) throw new Error(result.description);
-
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (err) {
-      console.error('Telegram Error:', err);
-      setSubmitStatus('error');
+        body: JSON.stringify({ chat_id: CHAT_ID, text }),
+      })
+      if (!res.ok) throw new Error()
+      setStatus('ok')
+      setForm({ name: '', email: '', subject: '', message: '' })
+    } catch {
+      setStatus('err')
     } finally {
-      setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus(null), 5000);
+      setBusy(false)
+      setTimeout(() => setStatus(null), 5000)
     }
-  };
+  }
+
+  const socials = [
+    { href: portfolioData.personal.github,    Icon: Github,    label: 'GitHub' },
+    { href: portfolioData.personal.linkedin,  Icon: Linkedin,  label: 'LinkedIn' },
+    { href: portfolioData.personal.instagram, Icon: Instagram, label: 'Instagram' },
+  ]
+
+  const details = [
+    { Icon: Mail,   val: portfolioData.personal.email,    href: `mailto:${portfolioData.personal.email}` },
+    { Icon: Phone,  val: portfolioData.personal.phone,    href: `tel:${portfolioData.personal.phone}` },
+    { Icon: MapPin, val: portfolioData.personal.location, href: null },
+  ]
+
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-gray-900">
+    <section id="contact" className="section relative" style={{ background: 'var(--bg-1)' }}>
+      <div className="absolute top-0 left-0 right-0 h-px"
+        style={{ background: 'linear-gradient(90deg, transparent, var(--rose), var(--amber), transparent)' }} />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div ref={contactRef} className="text-center mb-16 transform translate-y-8 transition-all duration-1000">
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <div className="w-8 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
-            <h2 className="text-sm font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-wide">
-              Get In Touch
-            </h2>
-            <div className="w-8 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
-          </div>
-          
-          <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Let's <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Connect</span>
-          </h3>
-          
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Ready to discuss your next project or just want to say hello? I'd love to hear from you.
-          </p>
-        </div>
+        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} className="mb-16">
+          <p className="mono text-xs mb-3" style={{ color: 'var(--text-3)' }}>// 05. contact</p>
+          <h2 className="syne text-4xl sm:text-5xl font-extrabold" style={{ color: 'var(--text-1)' }}>
+            Let's<br />
+            <span className="text-gradient-warm">Connect.</span>
+          </h2>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-8">
-              <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Let's Talk</h4>
-              <p className="text-gray-600 dark:text-gray-300 mb-8">
-                I'm always open to discussing new opportunities, collaborations, or just connecting with fellow developers and data enthusiasts.
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10">
+          {/* INFO */}
+          <div className="space-y-5">
+            <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }} className="bento p-7" style={{ borderLeft: '3px solid var(--rose)' }}>
+              <h3 className="syne font-bold text-xl mb-3" style={{ color: 'var(--text-1)' }}>Get in Touch</h3>
+              <p className="text-sm mb-6" style={{ color: 'var(--text-2)' }}>
+                Open to new roles, freelance projects, and cool collaborations. Let's build something great together.
               </p>
-
-              {/* Contact Details */}
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-white" />
+              <div className="space-y-4">
+                {details.map(({ Icon, val, href }, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-lg flex items-center justify-center border"
+                      style={{ background: 'rgba(251,113,133,0.1)', borderColor: 'rgba(251,113,133,0.25)', color: 'var(--rose)' }}>
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    {href ? (
+                      <a href={href} className="text-sm transition-colors hover:text-rose-400" style={{ color: 'var(--text-2)' }}>{val}</a>
+                    ) : (
+                      <span className="text-sm" style={{ color: 'var(--text-2)' }}>{val}</span>
+                    )}
                   </div>
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Email</p>
-                    <a href={`mailto:${portfolioData.personal.email}`} className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors duration-300">
-                      {portfolioData.personal.email}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Phone</p>
-                    <a href={`tel:${portfolioData.personal.phone}`} className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors duration-300">
-                      {portfolioData.personal.phone}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-white">Location</p>
-                    <p className="text-gray-600 dark:text-gray-300">{portfolioData.personal.location}</p>
-                  </div>
-                </div>
+                ))}
               </div>
-            </div>
+            </motion.div>
 
-            {/* Social Links */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
-              <h5 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Follow Me</h5>
-              <div className="flex space-x-4">
-                <a
-                  href={portfolioData.personal.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-gray-900 dark:bg-gray-700 rounded-full flex items-center justify-center text-white hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors duration-300 shadow-lg hover:shadow-xl"
-                >
-                  <Github className="w-6 h-6" />
-                </a>
-                <a
-                  href={portfolioData.personal.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
-                >
-                  <Linkedin className="w-6 h-6" />
-                </a>
-                <a
-                  href={portfolioData.personal.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white hover:from-pink-600 hover:to-purple-600 transition-colors duration-300 shadow-lg hover:shadow-xl"
-                >
-                  <Instagram className="w-6 h-6" />
-                </a>
+            <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }} transition={{ delay: 0.1 }}
+              className="bento p-5">
+              <p className="mono text-xs mb-4" style={{ color: 'var(--text-3)' }}>// social_links</p>
+              <div className="flex gap-3">
+                {socials.map(({ href, Icon, label }) => (
+                  <motion.a key={label} href={href} target="_blank" rel="noopener noreferrer"
+                    aria-label={label}
+                    className="w-10 h-10 rounded-xl flex items-center justify-center border transition-all"
+                    style={{ background: 'var(--bg-3)', borderColor: 'var(--border-2)', color: 'var(--text-2)' }}
+                    whileHover={{ scale: 1.12, borderColor: 'var(--indigo)', color: 'var(--indigo-bright)' }}
+                    whileTap={{ scale: 0.93 }}>
+                    <Icon className="w-4 h-4" />
+                  </motion.a>
+                ))}
               </div>
-            </div>
+            </motion.div>
 
-            {/* Quick Response */}
-            <div className= "bg-gradient-to-r from-purple-500 to-pink-500 dark:bg-gradient-to-r dark:from-purple-600 dark:to-pink-600 rounded-xl p-6 text-white">               
-              <div className="flex items-center space-x-3 mb-3">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <h4 className="text-lg font-semibold dark:text-white">Available for Projects</h4>
+            {/* Terminal-style availability */}
+            <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }} transition={{ delay: 0.2 }}
+              className="bento p-5 font-mono text-xs space-y-1.5"
+              style={{ background: 'var(--bg-0)', borderColor: 'var(--indigo)' }}>
+              <div className="flex items-center gap-2 mb-3">
+                <Terminal className="w-4 h-4" style={{ color: 'var(--indigo)' }} />
+                <span style={{ color: 'var(--text-3)' }}>status.sh</span>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 text-slate-200">
-                I'm currently accepting new freelance projects and full-time opportunities.
-              </p>
-            </div>
-          
+              <p style={{ color: 'var(--text-3)' }}>$ check availability</p>
+              <p><span style={{ color: 'var(--emerald)' }}>✓</span> <span style={{ color: 'var(--text-2)' }}>Actively looking for roles</span></p>
+              <p><span style={{ color: 'var(--emerald)' }}>✓</span> <span style={{ color: 'var(--text-2)' }}>Open to freelance projects</span></p>
+              <p><span style={{ color: 'var(--emerald)' }}>✓</span> <span style={{ color: 'var(--text-2)' }}>Response time: &lt; 24 hrs</span></p>
+              <p className="pt-1" style={{ color: 'var(--indigo-bright)' }}>$ <span className="animate-blink">|</span></p>
+            </motion.div>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg ">
-            <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send Message</h4>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="relative">
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 peer placeholder-transparent"
-                    placeholder="Your Name"
-                  />
-                  <label className="absolute left-4 -top-2.5 bg-white dark:bg-gray-800 px-2 text-sm text-gray-600 dark:text-gray-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-purple-600 peer-focus:text-sm">
-                    Your Name
-                  </label>
-                </div>
+          {/* FORM */}
+          <motion.div initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }} transition={{ delay: 0.1 }}
+            className="bento p-8"
+          >
+            <div className="flex items-center gap-2 mb-6">
+              <div className="w-2 h-2 rounded-full" style={{ background: 'var(--rose)' }} />
+              <div className="w-2 h-2 rounded-full" style={{ background: 'var(--amber)' }} />
+              <div className="w-2 h-2 rounded-full" style={{ background: 'var(--emerald)' }} />
+              <span className="mono text-xs ml-2" style={{ color: 'var(--text-3)' }}>send_message.js</span>
+            </div>
 
-                <div className="relative">
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 peer placeholder-transparent"
-                    placeholder="Your Email"
-                  />
-                  <label className="absolute left-4 -top-2.5 bg-white dark:bg-gray-800 px-2 text-sm text-gray-600 dark:text-gray-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-purple-600 peer-focus:text-sm">
-                    Your Email
-                  </label>
-                </div>
+            <form onSubmit={onSubmit} className="space-y-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <Field label="Name"  name="name"  value={form.name}  onChange={onChange} />
+                <Field label="Email" name="email" value={form.email} onChange={onChange} type="email" />
               </div>
+              <Field label="Subject" name="subject" value={form.subject} onChange={onChange} required={false} />
+              <Field label="Message" name="message" value={form.message} onChange={onChange} as="textarea" rows={5} />
 
-              <div className="relative">
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 peer placeholder-transparent text-black dark:text-white"
-                  placeholder="Subject"
-                />
-                <label className="absolute left-4 -top-2.5 bg-white dark:bg-gray-800 px-2 text-sm text-gray-600 dark:text-gray-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-purple-600 peer-focus:text-sm">
-                  Subject
-                </label>
-              </div>
-
-              <div className="relative">
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 peer placeholder-transparent resize-none text-black dark:text-white"
-                  placeholder="Your Message"
-                />
-                <label className="absolute left-4 -top-2.5 bg-white dark:bg-gray-800 px-2 text-sm dark:text-gray-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3 peer-focus:-top-2.5 peer-focus:text-purple-600 peer-focus:text-sm text-gray-600">
-                  Your Message
-                </label>
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-pink-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full"></div>
-                    <span>Sending...</span>
-                  </>
+              <motion.button type="submit" disabled={busy}
+                className="btn btn-indigo w-full justify-center py-3"
+                whileHover={{ scale: busy ? 1 : 1.02 }} whileTap={{ scale: busy ? 1 : 0.98 }}>
+                {busy ? (
+                  <><div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />Sending...</>
                 ) : (
-                  <>
-                    <Send className="w-5 h-5" />
-                    <span>Send Message</span>
-                  </>
+                  <><Send className="w-4 h-4" />Send Message</>
                 )}
-              </button>
+              </motion.button>
 
-              {/* Status Messages */}
-              {submitStatus === 'success' && (
-                <div className="p-4 bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-200 rounded-lg">
-                  ✅ Message sent successfully! I'll get back to you soon.
-                </div>
+              {status === 'ok' && (
+                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                  className="p-3.5 rounded-xl text-sm font-mono"
+                  style={{ background: 'rgba(52,211,153,0.1)', border: '1px solid rgba(52,211,153,0.25)', color: 'var(--emerald)' }}>
+                  ✓ Message sent! I'll respond within 24 hours.
+                </motion.div>
               )}
-              
-              {submitStatus === 'error' && (
-                <div className="p-4 bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200 rounded-lg">
-                  ❌ Failed to send message. Please try again or contact me directly.
-                </div>
+              {status === 'err' && (
+                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                  className="p-3.5 rounded-xl text-sm font-mono"
+                  style={{ background: 'rgba(251,113,133,0.1)', border: '1px solid rgba(251,113,133,0.25)', color: 'var(--rose)' }}>
+                  ✗ Failed. Email me directly: {portfolioData.personal.email}
+                </motion.div>
               )}
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact
