@@ -1,25 +1,19 @@
+import SapImage from "../assets/sap.png"
+
 const workItems = [
   {
     company: 'SAP Labs India',
     role: 'Scholar — upcoming opportunity (SAP Labs India Scholar Program)',
     date: '2026',
-    initial: 'S',
+    image: SapImage,
     color: '#0070f3',
     bg: '#e0f0ff',
-  },
-  {
-    company: 'Geek Room MSIT Chapter',
-    role: 'Head of Development — community of 25,000+ developers',
-    date: 'Sept 2023 - Present',
-    initial: '🚀',
-    color: '#0ea5e9',
-    bg: '#e0f2fe',
   },
   {
     company: 'Maharaja Surajmal Institute, GGSIPU',
     role: 'BCA — GPA 9.87 / 10 · Data Structures, Full-Stack, DBMS, Networking',
     date: '2023 - 2026',
-    initial: 'M',
+    image: '🎓',
     color: '#dc2626',
     bg: '#fef2f2',
   },
@@ -28,10 +22,22 @@ const workItems = [
 function WorkLogo({ item }) {
   return (
     <div
-      className="work-logo"
+      // 1. Added flex-shrink-0 so the text next to the logo doesn't squash the box
+      className="work-logo flex-shrink-0 flex items-center justify-center overflow-hidden"
       style={{ background: item.bg, color: item.color, borderColor: 'transparent' }}
     >
-      {item.initial}
+      {item.image ? (
+        <img 
+          src={item.image} 
+          // 2. Used !object-contain (with Tailwind's ! important modifier) and reduced padding to p-1.5
+          className="work-logo-img w-full h-full !object-contain p-1.5 block" 
+          // 3. Inline style guarantees it overrides any conflicting global CSS rules
+          style={{ objectFit: 'contain' }}
+          alt={item.company} 
+        />
+      ) : (
+        <span className="select-none font-medium text-xl">{item.icon}</span>
+      )}
     </div>
   )
 }
