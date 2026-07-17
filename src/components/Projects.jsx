@@ -1,3 +1,7 @@
+import CodedoodleBanner from '../assets/CodedoodleBanner.png'
+import IntellicareBanner from '../assets/IntellicareBanner.png'
+import CalmnestBanner from '../assets/CalmnestBanner.png'
+
 const projects = [
   {
     name: 'CodeDoodle — Real-time Code Collaboration',
@@ -6,7 +10,7 @@ const projects = [
     tags: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Socket.IO', 'WebRTC', 'Gemini API'],
     website: 'https://code-doodle-editor.vercel.app/',
     source: 'https://github.com/aditya-kumar-patraan1/Code-Doodle-Editor',
-    banner: '/codedoodle_banner.png',
+    banner: CodedoodleBanner,
   },
   {
     name: 'IntelliCare — AI Medical Platform',
@@ -15,7 +19,7 @@ const projects = [
     tags: ['React', 'Node.js', 'MongoDB', 'Socket.IO', 'WebRTC', 'Gemini API', 'Express.js'],
     website: 'https://intelli-care.vercel.app/',
     source: 'https://github.com/aditya-kumar-patraan1/Dr_IntelliCare',
-    banner: '/intellicare_banner.png',
+    banner: IntellicareBanner,
   },
   {
     name: 'ElvaTree — Dashboard & Raffle Platform',
@@ -27,13 +31,13 @@ const projects = [
     banner: '/elvatree_banner.png',
   },
   {
-    name: 'Code Reviewer — AI Feedback Tool',
+    name: 'CalmNest — Mental Wellness Platform',
     date: '2024',
-    desc: 'A tool that lets developers submit code and receive instant AI-powered feedback — highlighting mistakes, explaining errors, and providing correct code suggestions for rapid self-improvement.',
-    tags: ['React', 'Tailwind CSS', 'Gemini API'],
-    website: 'https://codedoodle.onrender.com/',
-    source: 'https://github.com/aditya-kumar-patraan1/CodeReviewer',
-    banner: '/codereviewer_banner.png',
+    desc: 'A mental wellness platform offering guided meditation, mood journaling, breathing exercises, real-time AI support via Zen AI chatbot, and a personal mindfulness dashboard.',
+    tags: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Socket.IO', 'Gemini API'],
+    website: 'https://calm-nest-iota.vercel.app/',
+    source: 'https://github.com/aditya-kumar-patraan1/CalmNest',
+    banner: CalmnestBanner,
   },
 ]
 

@@ -12,8 +12,8 @@ const contacts = [
   },
   {
     name: 'LinkedIn',
-    note: 'linkedin.com/in/aditya-kumar-b869ab293',
-    href: 'https://www.linkedin.com/in/aditya-kumar-b869ab293/',
+    note: 'linkedin.com/in/aditya-kumar--',
+    href: 'https://www.linkedin.com/in/aditya-kumar--/',
     external: true,
   },
   {
@@ -44,7 +44,7 @@ export default function Contact() {
           >
             <div className="contact-item-left">
               <span className="contact-name">{c.name}</span>
-              <span className="contact-note">{c.note}</span>
+              <span className="contact-note" style={{ marginTop: '5px', display: 'block' }}>{c.note}</span>
             </div>
             <span className="contact-arrow">↗</span>
           </a>

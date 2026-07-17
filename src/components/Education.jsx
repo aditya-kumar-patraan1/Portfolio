@@ -1,9 +1,11 @@
+import MsiImage from '../assets/MSI.png'
+
 const eduItems = [
   {
     name: 'Maharaja Surajmal Institute, GGSIPU',
     detail: 'Bachelor of Computer Applications (BCA) · GPA: 9.87 / 10',
     date: '2023 - 2026',
-    initial: 'M',
+    image: MsiImage,
     color: '#dc2626',
     bg: '#fef2f2',
   },
@@ -35,9 +37,31 @@ export default function Education() {
           <div key={item.name} className="work-item">
             <div
               className="work-logo"
-              style={{ background: item.bg, color: item.color, borderColor: 'transparent', fontSize: '1.2rem' }}
+              style={{
+                width: '68px',
+                height: '68px',
+                background: item.bg,
+                color: item.color,
+                borderColor: 'transparent',
+                fontSize: '1.2rem',
+                overflow: 'hidden',
+              }}
             >
-              {item.initial}
+              {item.image ? (
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    padding: '1px',
+                    display: 'block',
+                  }}
+                />
+              ) : (
+                item.initial
+              )}
             </div>
             <div className="work-info">
               <div className="work-company">{item.name}</div>

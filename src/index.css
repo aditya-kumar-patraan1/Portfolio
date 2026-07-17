@@ -512,7 +512,7 @@ body.light .btn-github { background: #18181b; color: #fff; }
 .contact-arrow { font-size: 1.1rem; color: var(--text-faint); transition: transform var(--tr); }
 .contact-item:hover .contact-arrow { transform: translate(4px, -4px); }
 
-.footer { margin-top: 96px; padding-top: 32px; border-top: 1px solid var(--border); text-align: center; }
+.footer { margin-top: 28px; padding-top: 32px; border-top: 1px solid var(--border); text-align: center; }
 .footer-quote { font-size: 0.82rem; color: var(--text-faint); font-style: italic; margin-bottom: 8px; line-height: 1.6; }
 .footer-easter { font-size: 0.72rem; color: var(--text-faint); opacity: 0.5; }
 
