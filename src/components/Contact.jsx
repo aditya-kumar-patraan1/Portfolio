@@ -1,8 +1,8 @@
 const contacts = [
   {
     name: 'Email',
-    note: 'adityakumar16112005@gmail.com',
-    href: 'mailto:adityakumar16112005@gmail.com',
+    note: 'adityakrp2006@gmail.com',
+    href: 'mailto:adityakrp2006@gmail.com',
   },
   {
     name: 'GitHub',

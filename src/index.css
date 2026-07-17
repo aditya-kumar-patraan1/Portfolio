@@ -79,7 +79,7 @@ body.light ::-webkit-scrollbar-thumb { background: #d4d4d8; }
 }
 
 .page-wrapper {
-  padding: 52px 0 140px;
+  padding: 52px 0 100px;
   min-height: 100vh;
 }
 
@@ -512,7 +512,7 @@ body.light .btn-github { background: #18181b; color: #fff; }
 .contact-arrow { font-size: 1.1rem; color: var(--text-faint); transition: transform var(--tr); }
 .contact-item:hover .contact-arrow { transform: translate(4px, -4px); }
 
-.footer { margin-top: 28px; padding-top: 32px; border-top: 1px solid var(--border); text-align: center; }
+.footer { margin-top: 16px; padding-top: 24px; border-top: 1px solid var(--border); text-align: center; }
 .footer-quote { font-size: 0.82rem; color: var(--text-faint); font-style: italic; margin-bottom: 8px; line-height: 1.6; }
 .footer-easter { font-size: 0.72rem; color: var(--text-faint); opacity: 0.5; }
 
@@ -603,13 +603,92 @@ body.light .nav-btn:hover { background: rgba(0,0,0,0.06); }
 }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 640px) {
+/* ===================== */
+/* RESPONSIVE            */
+/* ===================== */
+
+/* Tablet — ≤768px */
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .page-wrapper { padding: 40px 0 100px; }
+  .hero { margin-bottom: 48px; }
+  .chapter { margin-bottom: 56px; }
+  .chapter-title { font-size: 1.8rem; gap: 12px; }
+  .projects-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .products-grid { grid-template-columns: 1fr 1fr; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .hero-stats { gap: 12px; }
-  .hero-name { font-size: 2.6rem; }
-  .stack-row { grid-template-columns: 1fr; gap: 8px; }
+  .stack-row { grid-template-columns: 120px 1fr; }
+  .floating-nav { padding: 6px 10px; gap: 1px; }
 }
-@media (max-width: 400px) {
+
+/* Mobile — ≤640px */
+@media (max-width: 640px) {
+  .container { padding: 0 16px; }
+  .page-wrapper { padding: 32px 0 90px; }
+
+  /* Hero */
+  .hero { margin-bottom: 40px; }
+  .hero-name { font-size: clamp(2.2rem, 10vw, 3rem); }
+  .hero-subtitle { font-size: 0.88rem; margin-bottom: 28px; }
+  .hero-stats { gap: 10px; }
+  .stat-number { font-size: 1.5rem; }
+  .stat-label { font-size: 0.58rem; }
+
+  /* Header label */
+  .header-label { font-size: 0.6rem; gap: 6px; margin-bottom: 28px; flex-wrap: wrap; }
+
+  /* Chapters */
+  .chapter { margin-bottom: 48px; }
+  .chapter-title { font-size: 1.6rem; gap: 10px; margin-bottom: 20px; }
+
+  /* About drop-cap */
+  .about-dropcap { font-size: 3.2rem; }
+  .about-body { font-size: 0.9rem; }
+
+  /* Work / Education items */
+  .work-item { gap: 12px; padding: 16px 0; }
+  .work-company { font-size: 0.88rem; }
+  .work-role { font-size: 0.78rem; }
+  .work-date { font-size: 0.75rem; }
+
+  /* Stack */
+  .stack-row { grid-template-columns: 1fr; gap: 6px; padding: 14px 0; }
+
+  /* Projects — 1 column */
+  .projects-grid { grid-template-columns: 1fr; gap: 12px; }
+  .project-banner { height: 140px; }
+  .project-body { padding: 14px; }
+  .project-name { font-size: 0.9rem; }
+  .project-desc { font-size: 0.78rem; }
+
+  /* Live Products — 1 column */
   .products-grid { grid-template-columns: 1fr; }
+
+  /* Hackathons */
+  .hackathon-item { gap: 12px; padding-bottom: 24px; }
+  .hackathon-name { font-size: 0.88rem; }
+  .hackathon-desc { font-size: 0.78rem; }
+
+  /* Contact */
+  .contact-item { padding: 14px 0; }
+  .contact-name { font-size: 0.9rem; }
+  .contact-note { font-size: 0.72rem; }
+
+  /* Footer */
+  .footer { margin-top: 12px; padding-top: 20px; }
+  .footer-quote { font-size: 0.78rem; }
+
+  /* Nav */
+  .floating-nav { padding: 5px 8px; gap: 0; bottom: 16px; }
+  .nav-btn { width: 32px; height: 32px; }
+  .nav-btn svg { width: 14px; height: 14px; }
+}
+
+/* Very small — ≤400px */
+@media (max-width: 400px) {
+  .hero-name { font-size: 2rem; }
+  .chapter-title { font-size: 1.4rem; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .products-grid { grid-template-columns: 1fr; }
+  .hero-stats { grid-template-columns: repeat(3,1fr); gap: 6px; }
+  .stat-number { font-size: 1.3rem; }
 }
