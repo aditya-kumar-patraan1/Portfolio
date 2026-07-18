@@ -9,7 +9,8 @@ const workItems = [
     image: SapImage,
     color: '#0070f3',
     bg: '#ffffff',
-    imgPad: '0px',
+    imgPad: '4px',
+    link: 'https://www.sap.com/india/index.html',
   },
   {
     company: 'Maharaja Surajmal Institute, GGSIPU',
@@ -18,7 +19,8 @@ const workItems = [
     image: MsiImage,
     color: '#dc2626',
     bg: '#fef2f2',
-    imgPad: '1px',
+    imgPad: '6px',
+    link: 'https://www.msijanakpuri.com/',
   },
 ]
 
@@ -26,8 +28,8 @@ function WorkLogo({ item }) {
   return (
     <div
       style={{
-        width: '68px',
-        height: '68px',
+        width: '80px',
+        height: '80px',
         borderRadius: '50%',
         border: '1px solid rgba(255,255,255,0.14)',
         background: item.bg,
@@ -48,10 +50,11 @@ function WorkLogo({ item }) {
             objectFit: 'contain',
             padding: item.imgPad || '4px',
             display: 'block',
+            mixBlendMode: 'multiply',
           }}
         />
       ) : (
-        <span style={{ fontSize: '1.2rem', lineHeight: 1 }}>{item.icon}</span>
+        <span style={{ fontSize: '1.8rem', lineHeight: 1 }}>{item.icon}</span>
       )}
     </div>
   )
@@ -61,20 +64,25 @@ export default function Work() {
   return (
     <section className="chapter">
       <span className="chapter-tag fade-up">Chapter 02</span>
-      <h2 className="chapter-title fade-up">Work & Education</h2>
+      <h2 className="chapter-title fade-up">Work &amp; Education</h2>
       <div className="work-list">
         {workItems.map((item) => (
-          <div key={item.company} className="work-item">
+          <a
+            key={item.company}
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="work-item work-item-link"
+          >
             <WorkLogo item={item} />
             <div className="work-info">
               <div className="work-company">{item.company}</div>
               <div className="work-role">{item.role}</div>
             </div>
             <div className="work-date">{item.date}</div>
-          </div>
+          </a>
         ))}
       </div>
     </section>
   )
 }
-

@@ -1,21 +1,23 @@
-import MsiImage from '../assets/MSI.png'
+import SchoolImage from '../assets/school.png'
+import KnightImage from '../assets/knight.png'
 
 const eduItems = [
   {
-    name: 'Maharaja Surajmal Institute, GGSIPU',
-    detail: 'Bachelor of Computer Applications (BCA) · GPA: 9.87 / 10',
-    date: '2023 - 2026',
-    image: MsiImage,
-    color: '#dc2626',
-    bg: '#fef2f2',
+    name: 'Spring Meadows Public School',
+    detail: '🥇 1st Position — Commerce Stream · 🏆 Delhi Topper in Computer Science · 100 / 100',
+    image: SchoolImage,
+    color: '#16a34a',
+    bg: '#ffffff',
+    isCircle: true,
+    link: 'https://springmeadowspublicschool.com/',
   },
   {
     name: 'LeetCode — Knight',
     detail: 'Rating: 1,922 · Rank #7,445 globally · Top 4% out of 5,000,000 · 1000+ problems solved',
-    date: '2023 - Present',
-    initial: '⚔️',
+    image: KnightImage,
     color: '#f59e0b',
-    bg: '#fffbeb',
+    bg: 'transparent',
+    isCircle: false,
   },
   {
     name: 'AI Prompt Competition',
@@ -24,6 +26,7 @@ const eduItems = [
     initial: '🥈',
     color: '#6366f1',
     bg: '#eef2ff',
+    isCircle: true,
   },
 ]
 
@@ -33,18 +36,22 @@ export default function Education() {
       <span className="chapter-tag fade-up">Chapter 03</span>
       <h2 className="chapter-title fade-up">Education & Achievements</h2>
       <div className="work-list">
-        {eduItems.map((item) => (
-          <div key={item.name} className="work-item">
+        {eduItems.map((item) => {
+          const logoEl = (
             <div
-              className="work-logo"
               style={{
-                width: '68px',
-                height: '68px',
-                background: item.bg,
+                width: '80px',
+                height: '80px',
+                borderRadius: item.isCircle ? '50%' : '0',
+                border: item.isCircle ? '1px solid var(--border-strong)' : 'none',
+                background: item.isCircle ? item.bg : 'transparent',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 color: item.color,
-                borderColor: 'transparent',
-                fontSize: '1.2rem',
-                overflow: 'hidden',
+                fontSize: '2rem',
+                flexShrink: 0,
+                overflow: item.isCircle ? 'hidden' : 'visible',
               }}
             >
               {item.image ? (
@@ -55,21 +62,43 @@ export default function Education() {
                     width: '100%',
                     height: '100%',
                     objectFit: 'contain',
-                    padding: '1px',
+                    padding: item.isCircle ? '6px' : '0px',
                     display: 'block',
+                    mixBlendMode: item.isCircle ? 'multiply' : 'normal',
                   }}
                 />
               ) : (
                 item.initial
               )}
             </div>
-            <div className="work-info">
-              <div className="work-company">{item.name}</div>
-              <div className="work-role">{item.detail}</div>
+          )
+
+          const content = (
+            <>
+              {logoEl}
+              <div className="work-info">
+                <div className="work-company">{item.name}</div>
+                <div className="work-role">{item.detail}</div>
+              </div>
+            </>
+          )
+
+          return item.link ? (
+            <a
+              key={item.name}
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="work-item edu-item work-item-link"
+            >
+              {content}
+            </a>
+          ) : (
+            <div key={item.name} className="work-item edu-item">
+              {content}
             </div>
-            <div className="work-date">{item.date}</div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </section>
   )
