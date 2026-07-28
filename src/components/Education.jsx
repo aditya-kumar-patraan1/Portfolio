@@ -13,7 +13,7 @@ const eduItems = [
   },
   {
     name: 'LeetCode — Knight',
-    detail: 'Rating: 1,922 · Rank #7,445 globally · Top 4% out of 5,000,000 · 1000+ problems solved',
+    detail: 'Rating: 1,922 · Rank #7,445 globally · Top 4% out of 5,000,000 · 1500+ problems solved',
     image: KnightImage,
     color: '#f59e0b',
     bg: 'transparent',

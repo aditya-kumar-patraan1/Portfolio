@@ -11,7 +11,7 @@ import Footer from './components/Footer'
 import KonamiOverlay from './components/KonamiOverlay'
 import SpiderCursor from './components/SpiderCursor'
 
-const KONAMI_SEQ = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight']
+const KONAMI_SEQ = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight']
 
 function App() {
   const [lightMode, setLightMode] = useState(false)
@@ -58,11 +58,11 @@ function App() {
       {/* Top-left web corner */}
       <svg className="web-corner web-corner-tl" width="200" height="200" viewBox="0 0 200 200" aria-hidden="true">
         <g stroke="currentColor" strokeWidth="0.6" fill="none" opacity="0.15">
-          {[0,25,50,75,100,125,150,175,200].map(v => (
+          {[0, 25, 50, 75, 100, 125, 150, 175, 200].map(v => (
             <line key={v} x1="0" y1="0" x2={v} y2="200" />
           ))}
-          {[40,80,120,160].map(r => (
-            <path key={r} d={`M${r},0 Q${r*0.3},${r*0.3} 0,${r}`} />
+          {[40, 80, 120, 160].map(r => (
+            <path key={r} d={`M${r},0 Q${r * 0.3},${r * 0.3} 0,${r}`} />
           ))}
         </g>
       </svg>
@@ -70,11 +70,11 @@ function App() {
       {/* Top-right web corner */}
       <svg className="web-corner web-corner-tr" width="200" height="200" viewBox="0 0 200 200" aria-hidden="true">
         <g stroke="currentColor" strokeWidth="0.6" fill="none" opacity="0.15">
-          {[0,25,50,75,100,125,150,175,200].map(v => (
+          {[0, 25, 50, 75, 100, 125, 150, 175, 200].map(v => (
             <line key={v} x1="0" y1="0" x2={v} y2="200" />
           ))}
-          {[40,80,120,160].map(r => (
-            <path key={r} d={`M${r},0 Q${r*0.3},${r*0.3} 0,${r}`} />
+          {[40, 80, 120, 160].map(r => (
+            <path key={r} d={`M${r},0 Q${r * 0.3},${r * 0.3} 0,${r}`} />
           ))}
         </g>
       </svg>

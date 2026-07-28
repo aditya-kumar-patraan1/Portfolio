@@ -11,7 +11,7 @@ export default function Hero() {
       <hr className="hero-divider" />
       <div className="hero-stats">
         <div className="fade-up">
-          <span className="stat-number">1000+</span>
+          <span className="stat-number">1500+</span>
           <span className="stat-label">LeetCode problems</span>
         </div>
         <div className="fade-up">
